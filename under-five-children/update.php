@@ -11,7 +11,7 @@
     $fields = array($firstname, $lastname, $gender, $dateOfBirth, $parent);
 
     foreach ($fields as $field) {
-        if (fieldEmpty($field)) {
+        if (empty($field)) {
             $fieldEmpty = true;  
         }
     }

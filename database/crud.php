@@ -52,6 +52,27 @@ function getAll($table)
     return $result;
 }
 
+function update2($column1, $column2,   $value1, $value2,  $id,$table)
+{
+    global $conn;
+
+    $sql = "UPDATE $table 
+            SET $column1=?, $column2=?
+            WHERE id=?";
+
+     $stmt = $conn->prepare($sql);
+     $stmt->bind_param("sii", $value1, $value2, $id);    
+
+    if ($stmt->execute() === TRUE) {
+        $conn->close();
+        return true;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        $conn->close();
+        return false;
+    }
+}
+
 // Update functions 
 function update5($column1, $column2, $column3, $column4, $column5,  $value1, $value2, $value3, $value4, $value5, $id,$table)
 {
@@ -133,14 +154,16 @@ function delete($id, $table)
 {
     global $conn;
 
-    $sql = "DELETE FROM $table WHERE id=$id";
+    $sql = "DELETE FROM $table WHERE id=?";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);  
 
-    if ($conn->query($sql) === TRUE) {
+    if ($stmt->execute() === TRUE) {
         $conn->close();
         return true;
     } else {
         $conn->close();
         return false;
     }
-
 }

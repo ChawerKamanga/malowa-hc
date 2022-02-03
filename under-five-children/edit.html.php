@@ -1,14 +1,13 @@
 <?php
     include '../inc/head.html.php';
     include '../inc/authenticated.php';
-    include '../database/crud.php';
+    include_once '../database/crud.php';
 
     if (isset($_GET['empty'])) {
         echo '<p class="text-red">Invalid data please fill in all the fields</p>';
     }
     
-    $id = isset($_GET['id']);
-    $child = get1($id, 'under_five_children');  
+    $child = get1($_GET['id'], 'under_five_children');  
     
 ?>
 
