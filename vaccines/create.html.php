@@ -14,10 +14,10 @@
     <label for="vaccinename">Vaccine Name</label>
     <input type="text" name="vaccinename" id="vaccinename"> <br>
 
-    <input type="radio" id="is-special" name="is_special" value="0">
+    <input type="radio" id="is-special" name="is_special" value="1">
     <label for="is-special">Is Special</label>
 
-    <input type="radio" id="is-not-special" name="is_special" value="1">
+    <input type="radio" id="is-not-special" name="is_special" value="0">
     <label for="is-not-special">Not Special</label> <br>
 
     <input type="submit" value="Register">

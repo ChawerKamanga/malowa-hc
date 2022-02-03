@@ -44,7 +44,11 @@ if ($result->num_rows > 0) {
     while ($vaccine = $result->fetch_assoc()) {
         echo '<tr>';
         echo '<td>' . $vaccine["vaccine_name"] . '</td>';
-        echo '<td>' . $vaccine["vaccine_name"] . '</td>';
+        if ($vaccine["is_special"]) {
+            echo '<td style="text-align: center">Yes</td>';
+        }else {
+            echo '<td style="text-align: center">No</td>';   
+        }
         echo '<td> <a href="https://localhost/malowa-hc/under-five-children/edit.html.php?id=' 
         . $vaccine["id"] . '"' . '>edit</a> <button onclick="confirmDelete(' 
         . $vaccine["id"] . ')">delete</button></td>';
