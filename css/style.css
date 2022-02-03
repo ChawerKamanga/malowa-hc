@@ -1,0 +1,13 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.text-red {
+    color: #BB0233;
+}
+
+.text-green{
+    color: #116600;
+}
