@@ -51,6 +51,18 @@ function getAll($table)
     return $result;
 }
 
+function getChildren(){
+    global $conn;
+
+    $sql = 'SELECT under_five_children.id, under_five_children.firstname, under_five_children.lastname, 
+    under_five_children.gender, date_of_birth, parents.firstname as parent_firstname, parents.lastname as parent_lastname
+    FROM under_five_children, parents WHERE parent_id = parents.id;';
+
+    $result = $conn->query($sql);
+
+    return $result;
+}
+
 function update2($column1, $column2,   $value1, $value2,  $id,$table)
 {
     global $conn;

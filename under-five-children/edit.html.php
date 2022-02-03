@@ -44,12 +44,21 @@
     <input type="date" name="date_of_birth" id="dob" value="<?=$child['date_of_birth']?>"> <br>
 
 
-    <select name="parent" id="parent">
-        <option value="">--Please choose an option--</option>
-        <option value="1">Thomas Tuchel</option>
-        <option value="2">Joma Tech</option>
-        <option value="3">Brad Traversy</option>
-    </select> <br>
+    <?php
+        $result = getAll('parents');
+
+        if ($result->num_rows > 0) {
+            echo '<select name="parent" id="parent">';
+                echo '<option value="">--Please choose an option--</option>';
+                while ($parent = $result->fetch_assoc()) { 
+                    echo '<option value="' . $parent['id'] .'">'. $parent['firstname'] . ' ' . $parent['lastname'] .'</option>';
+                }
+            echo '</select>';
+        }else {
+            echo '<br><br>0 results<br>';
+        }
+
+    ?> <br>
 
     <input type="submit" value="Update">
 

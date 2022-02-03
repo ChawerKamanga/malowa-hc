@@ -29,7 +29,7 @@ if (isset($_GET['deleted'])) {
 
 <?php
 
-$result = getAll('under_five_children');
+$result = getChildren();
 
 if ($result->num_rows > 0) {
     echo '<table border="1">';
@@ -53,7 +53,7 @@ if ($result->num_rows > 0) {
         echo '<td>' . $child["lastname"] . '</td>';
         echo '<td>' . $child["gender"] . '</td>';
         echo '<td>' . $child["date_of_birth"] . '</td>';
-        echo '<td>' . $child["parent_id"] . '</td>';
+        echo '<td>' . $child["parent_firstname"] . ' '. $child['parent_lastname']. '</td>';
         echo '<td>' . 1 . '</td>';
         echo '<td> <a href="https://localhost/malowa-hc/under-five-children/edit.html.php?id=' 
         . $child["id"] . '"' . '>edit</a> <button onclick="confirmDelete(' 

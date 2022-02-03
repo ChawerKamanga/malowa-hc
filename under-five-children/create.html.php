@@ -1,10 +1,13 @@
 <?php
     include '../inc/head.html.php';
     include '../inc/authenticated.php';
+    include_once '../database/crud.php';
 
     if (isset($_GET['empty'])) {
         echo '<p class="text-red">Invalid data please fill in all the fields</p>';
     }
+
+
 ?>
 
 <a href="http://localhost/malowa-hc/dashboard/index.html.php">Dashboard</a>
@@ -26,12 +29,22 @@
     <label for="dob">Date of birth</label>
     <input type="date" name="date_of_birth" id="dob"> <br>
 
-    <select name="parent" id="parent">
-        <option value="">--Please choose an option--</option>
-        <option value="1">Thomas Tuchel</option>
-        <option value="2">Joma Tech</option>
-        <option value="3">Brad Traversy</option>
-    </select> <br>
+    <?php
+        $result = getAll('parents');
+
+        if ($result->num_rows > 0) {
+            echo '<select name="parent" id="parent">';
+                echo '<option value="">--Please choose an option--</option>';
+                while ($parent = $result->fetch_assoc()) { 
+                    echo '<option value="' . $parent['id'] .'">'. $parent['firstname'] . ' ' . $parent['lastname'] .'</option>';
+                }
+            echo '</select>';
+        }else {
+            echo '<br><br>0 results<br>';
+        }
+
+    ?>
+    <br>
 
     <input type="submit" value="Register">
 
