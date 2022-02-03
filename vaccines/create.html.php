@@ -10,7 +10,7 @@
 <a href="http://localhost/malowa-hc/dashboard/index.html.php">Dashboard</a>
 <a href="http://localhost/malowa-hc/dashboard/index.html.php">Under Five Children</a>
 
-<form action="http://localhost/malowa-hc/vaccine/store.php" method="post">
+<form action="http://localhost/malowa-hc/vaccines/store.php" method="post">
     <label for="vaccinename">Vaccine Name</label>
     <input type="text" name="vaccinename" id="vaccinename"> <br>
 

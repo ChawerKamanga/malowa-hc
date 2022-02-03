@@ -72,6 +72,26 @@ function update5($column1, $column2, $column3, $column4, $column5,  $value1, $va
 }
 
 // Create functions
+function save2($column1, $column2,  $value1, $value2, $table)
+{
+    global $conn;
+
+    $sql = "INSERT INTO $table ($column1, $column2)
+            VALUES (?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $value1, $value2);    
+
+    if ($stmt->execute() === TRUE) {
+        $conn->close();
+        return true;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        $conn->close();
+        return false;
+    }
+}
+
 function save4($column1, $column2, $column3, $column4,  $value1, $value2, $value3, $value4, $table)
 {
     global $conn;
