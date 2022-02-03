@@ -20,7 +20,7 @@
     <input type="radio" id="male" name="gender" value="M">
     <label for="male">Male</label>
 
-    <input type="radio" id="female" name="gender" value="M">
+    <input type="radio" id="female" name="gender" value="F">
     <label for="female">Female</label> <br>
 
     <input type="submit" value="Add Parent">

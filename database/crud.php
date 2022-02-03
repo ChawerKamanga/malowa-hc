@@ -5,7 +5,6 @@ include 'connection.php';
 function get1($id, $table)
 {
     global $conn;
-
     $sql = "SELECT * FROM $table WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);    
@@ -62,6 +61,28 @@ function update2($column1, $column2,   $value1, $value2,  $id,$table)
 
      $stmt = $conn->prepare($sql);
      $stmt->bind_param("sii", $value1, $value2, $id);    
+
+    if ($stmt->execute() === TRUE) {
+        $conn->close();
+        return true;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        $conn->close();
+        return false;
+    }
+}
+
+
+function update3($column1, $column2, $column3,   $value1, $value2, $value3,  $id, $table)
+{
+    global $conn;
+
+    $sql = "UPDATE $table 
+            SET $column1=?, $column2=?, $column3=?
+            WHERE id=?";
+
+     $stmt = $conn->prepare($sql);
+     $stmt->bind_param("sssi", $value1, $value2, $value3,$id);    
 
     if ($stmt->execute() === TRUE) {
         $conn->close();
