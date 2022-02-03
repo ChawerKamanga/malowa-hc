@@ -21,7 +21,7 @@ if (isset($_GET['deleted'])) {
 <a href="http://localhost/malowa-hc/under-five-children/create.html.php">Add Under Five Children</a>
 <a href="">Visits</a>
 <a href="http://localhost/malowa-hc/vaccines/index.html.php">Vaccine</a>
-<a href="">Parents</a>
+<a href="http://localhost/malowa-hc/parents/index.html.php">Parents</a>
 
 <form action="http://localhost/malowa-hc/auth/logout.php" method="post" style="display: inline;">
     <button type="submit">Logout</button>

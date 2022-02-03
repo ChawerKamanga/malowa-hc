@@ -113,6 +113,26 @@ function save2($column1, $column2,  $value1, $value2, $table)
     }
 }
 
+function save3($column1, $column2, $column3,  $value1, $value2, $value3, $table)
+{
+    global $conn;
+
+    $sql = "INSERT INTO $table ($column1, $column2, $column3)
+            VALUES (?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $value1, $value2, $value3);    
+
+    if ($stmt->execute() === TRUE) {
+        $conn->close();
+        return true;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        $conn->close();
+        return false;
+    }
+}
+
 function save4($column1, $column2, $column3, $column4,  $value1, $value2, $value3, $value4, $table)
 {
     global $conn;

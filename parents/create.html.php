@@ -10,7 +10,7 @@
 <a href="http://localhost/malowa-hc/dashboard/index.html.php">Dashboard</a>
 <a href="http://localhost/malowa-hc/parents/index.html.php">Parents</a>
 
-<form action="http://localhost/malowa-hc/vaccines/store.php" method="post">
+<form action="http://localhost/malowa-hc/parents/store.php" method="post">
     <label for="firstname">Firstname</label>
     <input type="text" name="firstname" id="firstname"> <br>
 
@@ -23,7 +23,7 @@
     <input type="radio" id="female" name="gender" value="M">
     <label for="female">Female</label> <br>
 
-    <input type="submit" value="Register">
+    <input type="submit" value="Add Parent">
 
 </form>
 

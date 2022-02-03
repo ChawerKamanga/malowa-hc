@@ -37,25 +37,27 @@ if ($result->num_rows > 0) {
     echo '<table border="1">';
     echo '<thead>';
     echo '<tr>';
-    echo '<th>Vaccine Name</th>';
-    echo '<th>is a special vaccine</th>';
+    echo '<th>Firstame</th>';
+    echo '<th>Lastname</th>';
+    echo '<th>gender</th>';
     echo '<th>action</th>';
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
     while ($parent = $result->fetch_assoc()) {
         echo '<tr>';
-        echo '<td>' . $parent["vaccine_name"] . '</td>';
-        if ($parent["is_special"]) {
-            echo '<td style="text-align: center">Yes</td>';
+        echo '<td>' . $parent["firstname"] . '</td>';
+        echo '<td>' . $parent["lastname"] . '</td>';
+        if ($parent["gender"] === 'M') {
+            echo '<td style="text-align: center">Male</td>';
         }else {
-            echo '<td style="text-align: center">No</td>';   
+            echo '<td style="text-align: center">Female</td>';   
         }
-        echo '<td> <a href="https://localhost/malowa-hc/vaccines/edit.html.php?id=' 
+        echo '<td> <a href="https://localhost/malowa-hc/parents/edit.html.php?id=' 
         . $parent["id"] . '"' . '>edit</a> <button onclick="confirmDelete(' 
         . $parent["id"] . ')">delete</button></td>';
         echo '</tr>';
-        echo '<form method="post" action="https://localhost/malowa-hc/vaccines/delete.php" style="display: none;" 
+        echo '<form method="post" action="https://localhost/malowa-hc/parents/delete.php" style="display: none;" 
                 id="delete-form-' . $parent["id"] . '">';
         echo '<input type="hidden" name="id" value="' . $parent["id"] . '">';
         echo '</form>';
