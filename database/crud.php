@@ -63,6 +63,19 @@ function getChildren(){
     return $result;
 }
 
+function getVisits()
+{
+    global $conn;
+
+    $sql = 'SELECT vaccines.vaccine_name, under_five_children.firstname, under_five_children.lastname, visits.date_of_visit
+    FROM vaccines, under_five_children, visits
+    WHERE vaccine_id = vaccines.id && child_id = under_five_children.id;';
+
+    $result = $conn->query($sql);
+
+    return $result;
+}
+
 function update2($column1, $column2,   $value1, $value2,  $id,$table)
 {
     global $conn;
@@ -135,6 +148,26 @@ function save2($column1, $column2,  $value1, $value2, $table)
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $value1, $value2);    
+
+    if ($stmt->execute() === TRUE) {
+        $conn->close();
+        return true;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        $conn->close();
+        return false;
+    }
+}
+
+function saveiis($column1, $column2, $column3,  $value1, $value2, $value3, $table)
+{
+    global $conn;
+
+    $sql = "INSERT INTO $table ($column1, $column2, $column3)
+            VALUES (?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iis", $value1, $value2, $value3);    
 
     if ($stmt->execute() === TRUE) {
         $conn->close();

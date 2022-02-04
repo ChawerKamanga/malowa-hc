@@ -1,10 +1,7 @@
 <?php
     include 'auth.php';
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $fields = array($email, $password);
+    $fields = array($_POST['email'], $_POST['password']);
 
     $fieldEmpty = false;
 
@@ -18,9 +15,9 @@
         header("Location: http://localhost/malowa-hc/index.php?errors=true");
     }
     
-    if (validEmail($email) && validPassword($password, $email)) {
+    if (validEmail($_POST['email']) && validPassword($_POST['password'], $_POST['email'])) {
         session_start();
-        $_SESSION['email'] = $email;
+        $_SESSION['email'] = $_POST['email'];
         header("Location: http://localhost/malowa-hc/dashboard/index.html.php");
     }else {
         header("Location: http://localhost/malowa-hc/index.php?errors=true");

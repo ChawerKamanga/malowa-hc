@@ -19,7 +19,7 @@ if (isset($_GET['deleted'])) {
 <a href="http://localhost/malowa-hc/dashboard/index.html.php">Dashboard</a>
 <a href="http://localhost/malowa-hc/health-workers/index.html.php">Health Workers</a>
 <a href="http://localhost/malowa-hc/under-five-children/create.html.php">Add Under Five Children</a>
-<a href="">Visits</a>
+<a href="http://localhost/malowa-hc/visits/index.html.php">Visits</a>
 <a href="http://localhost/malowa-hc/vaccines/index.html.php">Vaccine</a>
 <a href="http://localhost/malowa-hc/parents/index.html.php">Parents</a>
 
