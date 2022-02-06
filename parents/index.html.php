@@ -40,6 +40,7 @@ if ($result->num_rows > 0) {
     echo '<th>Firstame</th>';
     echo '<th>Lastname</th>';
     echo '<th>gender</th>';
+    echo '<th>Number of children</th>';
     echo '<th>action</th>';
     echo '</tr>';
     echo '</thead>';
@@ -53,11 +54,20 @@ if ($result->num_rows > 0) {
         }else {
             echo '<td style="text-align: center">Female</td>';   
         }
-        echo '<td> <a href="https://localhost/malowa-hc/parents/edit.html.php?id=' 
+
+        $countChildren = countParentChild($parent["id"]);
+
+        if ($countChildren['total_children'] >= 5) {
+            echo '<td style="color: red; text-align: center">'. $countChildren['total_children']  . '</td>';
+        }else {
+            echo '<td style="text-align: center">' . $countChildren['total_children'] .'</td>';
+        }
+
+        echo '<td> <a href="http://localhost/malowa-hc/parents/edit.html.php?id=' 
         . $parent["id"] . '"' . '>edit</a> <button onclick="confirmDelete(' 
         . $parent["id"] . ')">delete</button></td>';
         echo '</tr>';
-        echo '<form method="post" action="https://localhost/malowa-hc/parents/delete.php" style="display: none;" 
+        echo '<form method="post" action="http://localhost/malowa-hc/parents/delete.php" style="display: none;" 
                 id="delete-form-' . $parent["id"] . '">';
         echo '<input type="hidden" name="id" value="' . $parent["id"] . '">';
         echo '</form>';

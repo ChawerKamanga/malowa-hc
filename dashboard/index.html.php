@@ -31,6 +31,7 @@ if (isset($_GET['deleted'])) {
 
 $result = getChildren();
 
+
 if ($result->num_rows > 0) {
     echo '<table border="1">';
     echo '<thead>';
@@ -39,27 +40,55 @@ if ($result->num_rows > 0) {
     echo '<th>Firstname</th>';
     echo '<th>Lastname</th>';
     echo '<th>Gender</th>';
-    echo '<th>Date Of Birth</th>';
+    echo '<th>Age</th>';
     echo '<th>Parent</th>';
     echo '<th>Number of Vaccines</th>';
     echo '<th>action</th>';
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
+
+    
+    date("F jS, Y", strtotime($timestamp));
+
     while ($child = $result->fetch_assoc()) {
         echo '<tr>';
         echo '<td>' . $child["id"] . '</td>';
         echo '<td>' . $child["firstname"] . '</td>';
         echo '<td>' . $child["lastname"] . '</td>';
-        echo '<td>' . $child["gender"] . '</td>';
-        echo '<td>' . $child["date_of_birth"] . '</td>';
+
+        if ($child["gender"] == 'M') {
+            echo '<td style="text-align: center">Male</td>';
+        }else {
+            echo '<td style="text-align: center">Female</td>';
+        }
+
+        $timezone = date_default_timezone_get();
+        $date = date('m/d/Y', time());
+
+        $date1 = new DateTime($child["date_of_birth"]);
+        $date2 = new DateTime($date);
+        $interval = $date1->diff($date2);
+
+        if ($interval->y > 0) {
+            if ($interval->y > 1) {
+                echo '<td>' . $interval->y .  ' years, ' . $interval->m. ' months '. '</td>';
+            }
+            echo '<td>' . $interval->y .  ' year, ' . $interval->m. ' months '. '</td>';
+        }else {
+            echo '<td>' . $interval->m. ' months '. '</td>';
+        }
+
+
+        // echo '<td>' . date("F jS, Y", strtotime($child["date_of_birth"])) . '</td>';
         echo '<td>' . $child["parent_firstname"] . ' '. $child['parent_lastname']. '</td>';
-        echo '<td>' . 1 . '</td>';
-        echo '<td> <a href="https://localhost/malowa-hc/under-five-children/edit.html.php?id=' 
+        $countChildren = countChildren($child["id"]);
+        echo '<td style="text-align: center">' . $countChildren['total_children'] . '</td>';
+        echo '<td> <a href="http://localhost/malowa-hc/under-five-children/edit.html.php?id=' 
         . $child["id"] . '"' . '>edit</a> <button onclick="confirmDelete(' 
         . $child["id"] . ')">delete</button></td>';
         echo '</tr>';
-        echo '<form method="post" action="https://localhost/malowa-hc/under-five-children/delete.php" style="display: none;" 
+        echo '<form method="post" action="http://localhost/malowa-hc/under-five-children/delete.php" style="display: none;" 
                 id="delete-form-' . $child["id"] . '">';
         echo '<input type="hidden" name="id" value="' . $child["id"] . '">';
         echo '</form>';

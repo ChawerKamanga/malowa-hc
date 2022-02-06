@@ -49,11 +49,11 @@ if ($result->num_rows > 0) {
         }else {
             echo '<td style="text-align: center">No</td>';   
         }
-        echo '<td> <a href="https://localhost/malowa-hc/vaccines/edit.html.php?id=' 
+        echo '<td> <a href="http://localhost/malowa-hc/vaccines/edit.html.php?id=' 
         . $vaccine["id"] . '"' . '>edit</a> <button onclick="confirmDelete(' 
         . $vaccine["id"] . ')">delete</button></td>';
         echo '</tr>';
-        echo '<form method="post" action="https://localhost/malowa-hc/vaccines/delete.php" style="display: none;" 
+        echo '<form method="post" action="http://localhost/malowa-hc/vaccines/delete.php" style="display: none;" 
                 id="delete-form-' . $vaccine["id"] . '">';
         echo '<input type="hidden" name="id" value="' . $vaccine["id"] . '">';
         echo '</form>';

@@ -13,8 +13,20 @@ foreach ($fields as $field) {
     }
 }
 
-$child = get1($_POST['child_id'], 'under_five_chidren');
+$child = get1($_POST['child_id'], 'under_five_children');
 $vaccine = get1($_POST['vaccine_id'], 'vaccines');
+
+$special = false;
+
+if ($vaccine['is_special'] == 1) {
+    $special = true;
+}
+
+
+if ($child['gender'] == 'M' && $special == true) {
+    header("Location: http://localhost/malowa-hc/visits/create.html.php?special_vaccine=true"); 
+    die('A male child can not get that vaccine');  
+}
 
 if ($fieldEmpty) {
     header("Location: http://localhost/malowa-hc/visits/create.html.php?empty=true");

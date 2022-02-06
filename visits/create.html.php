@@ -4,7 +4,11 @@
     include '../database/crud.php';
 
     if (isset($_GET['empty'])) {
-        echo '<p class="text-red">Invalid data please fill in all the fields</p>';
+        echo '<p class="text-red message">Invalid data please fill in all the fields</p>';
+    }
+
+    if (isset($_GET['special_vaccine'])) {
+        echo '<p class="text-red message">A male child can not recive that vaccine</p>';
     }
 ?>
 

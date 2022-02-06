@@ -49,11 +49,11 @@ if ($result->num_rows > 0) {
         echo '<td>' . $healthWorker["email"] . '</td>';
 
         if ($_SESSION['email'] === $healthWorker["email"]) {
-            echo '<td style="text-align: center"> <a href="https://localhost/malowa-hc/health-workers/edit.html.php?id=' 
+            echo '<td style="text-align: center"> <a href="http://localhost/malowa-hc/health-workers/edit.html.php?id=' 
             . $healthWorker["id"] . '"' . '>edit</a> ';
             echo '</tr>';
         }else {
-            echo '<td style="text-align: center"> <a href="https://localhost/malowa-hc/health-workers/view.html.php?id=' 
+            echo '<td style="text-align: center"> <a href="http://localhost/malowa-hc/health-workers/view.html.php?id=' 
             . $healthWorker["id"] . '"' . '>view</a></td>';
             echo '</tr>';
         }

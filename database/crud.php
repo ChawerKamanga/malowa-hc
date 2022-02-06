@@ -1,6 +1,35 @@
 <?php
 include 'connection.php';
 
+function countChildren($id)
+{
+    global $conn;
+
+    $sql = 'SELECT COUNT(under_five_children.id) as total_children FROM under_five_children, visits 
+        WHERE under_five_children.id=? && visits.child_id=?;';
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $id, $id);    
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $result = $result->fetch_assoc();
+    return $result;
+}
+
+function countParentChild($id)
+{
+    global $conn;
+    $sql = 'SELECT COUNT(under_five_children.id) as total_children FROM under_five_children, parents
+    WHERE under_five_children.parent_id=? && parents.id=?;';
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $id, $id);    
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $result = $result->fetch_assoc();
+    return $result;    
+}
+
 // Get Functions
 function get1($id, $table)
 {
@@ -67,7 +96,7 @@ function getVisits()
 {
     global $conn;
 
-    $sql = 'SELECT vaccines.vaccine_name, under_five_children.firstname, under_five_children.lastname, visits.date_of_visit
+    $sql = 'SELECT vaccines.vaccine_name, under_five_children.firstname, under_five_children.lastname, visits.date_of_visit, visits.id
     FROM vaccines, under_five_children, visits
     WHERE vaccine_id = vaccines.id && child_id = under_five_children.id;';
 
