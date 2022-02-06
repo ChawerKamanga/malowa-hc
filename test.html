@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test It</title>
+    <style>
+        label {
+            display: flex;
+            align-items: center;
+        }
+
+        span::after {
+            padding-left: 5px;
+        }
+
+        input:invalid+span::after {
+            content: '✖';
+        }
+
+        input:valid+span::after {
+            content: '✓';
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label>
+            Choose your preferred party date (required, April 1st to 20th):
+            <input type="date" name="party" min="2018-04-01" max="2022-04-20" required>
+            <span class="validity"></span>
+        </label>
+
+        <p>
+            <button>Submit</button>
+        </p>
+    </form>
+
+    <script>
+        const today = new Date()
+        console.log(today) 
+
+        const dayAfterToday = new Date()
+        // add 2 day to today
+        dayAfterToday.setDate(new Date().getDate() + 1)
+
+        if (dayAfterToday > today) {
+            console.log('You cant go to the future');
+        } else {
+            console.log('Valid'); 
+        }
+    </script>
+
+</body>
+
+</html>

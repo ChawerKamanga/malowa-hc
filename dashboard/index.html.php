@@ -22,6 +22,7 @@ if (isset($_GET['deleted'])) {
 <a href="http://localhost/malowa-hc/visits/index.html.php">Visits</a>
 <a href="http://localhost/malowa-hc/vaccines/index.html.php">Vaccine</a>
 <a href="http://localhost/malowa-hc/parents/index.html.php">Parents</a>
+<a href="http://localhost/malowa-hc/purpose/index.html.php">Purposes</a>
 
 <form action="http://localhost/malowa-hc/auth/logout.php" method="post" style="display: inline;">
     <button type="submit">Logout</button>
@@ -73,8 +74,9 @@ if ($result->num_rows > 0) {
         if ($interval->y > 0) {
             if ($interval->y > 1) {
                 echo '<td>' . $interval->y .  ' years, ' . $interval->m. ' months '. '</td>';
+            }else {
+                echo '<td>' . $interval->y .  ' year, ' . $interval->m. ' months '. '</td>';
             }
-            echo '<td>' . $interval->y .  ' year, ' . $interval->m. ' months '. '</td>';
         }else {
             echo '<td>' . $interval->m. ' months '. '</td>';
         }

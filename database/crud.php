@@ -105,6 +105,27 @@ function getVisits()
     return $result;
 }
 
+function update2ssi($column1, $column2,   $value1, $value2,  $id,$table)
+{
+    global $conn;
+
+    $sql = "UPDATE $table 
+            SET $column1=?, $column2=?
+            WHERE id=?";
+
+     $stmt = $conn->prepare($sql);
+     $stmt->bind_param("ssi", $value1, $value2, $id);    
+
+    if ($stmt->execute() === TRUE) {
+        $conn->close();
+        return true;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        $conn->close();
+        return false;
+    }
+}
+
 function update2($column1, $column2,   $value1, $value2,  $id,$table)
 {
     global $conn;
